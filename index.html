@@ -36,7 +36,12 @@
     if (isActive && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
       if (canScrollHorizontally(scrollContainer, e.deltaY)) {
         scrollContainer.scrollLeft += e.deltaY;
+        document.body.style.overflow = "hidden"; // Lock vertical scrolling
+        window.scrollTo(0, scrollContainer.offsetTop - 150);
         e.preventDefault();
+      }
+      else {
+        document.body.style.overflow = "auto";
       }
     }
   }, { passive: false });
